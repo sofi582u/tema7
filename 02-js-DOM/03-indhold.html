@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        article {
+            max-width: 640px;
+            border: 1px solid black;
+            margin: 10px;
+        }
+
+        img {
+            width: 100%
+        }
+
+        h1,
+        footer {
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        h2 {
+            max-width: 1320px;
+            text-align: left;
+        }
+
+        header,
+        footer {
+            padding: 10px 0;
+            border: 1px solid #888;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Title</h1>
+    </header>
+    <main>
+
+        <h2>Undertitel</h2>
+        <section>
+            <article>
+                <img src="https://placeimg.com/640/480/nature" alt="first">
+                <h2>Article 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+            </article>
+            <article>
+                <img src="https://placeimg.com/640/480/animals" alt="second">
+                <h2>Article 2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+            </article>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script>
+        const afdeling = document.querySelector("section");
+        console.log(afdeling);
+        const artikkel1 = document.querySelector("article:nth-child(1) p");
+        console.log(artikkel1);
+        artikkel1.textContent = "Her er det ene billede";
+
+        const artikkel2 = document.querySelector("article:nth-child(2) p");
+        console.log(artikkel2);
+        artikkel2.innerHTML = "Her er det andet billede";
+
+        const overskrift = document.querySelector("h1");
+        overskrift.textContent;
+        console.log(overskrift.textContent);
+        overskrift.textContent = "Billeder";
+        console.log(overskrift.textContent);
+
+        const undertitel1 = document.querySelector("article:nth-child(1) h2");
+        undertitel1.textContent;
+        console.log(undertitel1.textContent);
+        undertitel1.textContent = "1. Titel";
+        console.log(undertitel1.textContent);
+        const undertitel2 = document.querySelector("article:nth-child(2) h2");
+        undertitel2.textContent;
+        console.log(undertitel2.textContent);
+        undertitel2.textContent = "2. Titel";
+        console.log(undertitel1.textContent);
+
+
+        const paragraf = document.querySelector("p");
+        console.log(paragraf);
+
+
+        const billede1 = document.querySelector("article:nth-child(1) img");
+        console.log(billede1);
+        billede1.src = "billede1.jpg";
+        billede1.alt = "ny first";
+
+        const billede2 = document.querySelector("article:nth-child(2) img");
+        console.log(billede2);
+        billede2.src = "billede2.jpg";
+        billede2.alt = "ny second";
+
+    </script>
+</body>
+
+</html>
