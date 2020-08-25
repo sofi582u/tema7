@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        article {
+            max-width: 640px;
+            border: 1px solid black;
+            margin: 10px;
+        }
+
+        img {
+            width: 100%
+        }
+
+        h1,
+        footer {
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        h2 {
+            max-width: 1320px;
+            text-align: left;
+        }
+
+        header,
+        footer {
+            padding: 10px 0;
+            border: 1px solid #888;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Title</h1>
+    </header>
+    <main>
+
+        <h2>Undertitel</h2>
+        <section>
+            <article>
+                <img src="https://placeimg.com/640/480/nature" alt="">
+                <h2>Article 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+            </article>
+            <article>
+                <img src="https://placeimg.com/640/480/nature" alt="">
+                <h2>Article 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+            </article>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script>
+        const afdeling = document.querySelector("section");
+        console.log(afdeling);
+        const artikkel = document.querySelector("article");
+        console.log(artikkel);
+        const overskrift = document.querySelector("h1");
+        console.log(overskrift);
+        const undertitel = document.querySelector("h2");
+        console.log(undertitel);
+        const paragraf = document.querySelector("p");
+        console.log(paragraf);
+        const billede = document.querySelector("img");
+        console.log(billede);
+
+    </script>
+</body>
+
+</html>
