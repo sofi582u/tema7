@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Objekter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: #e29000;
+        }
+
+        article {
+            border: 0px solid #333;
+            border-radius: 10%;
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        #mainsection {
+            width: 90vw;
+            max-width: 1000px;
+            display: grid;
+            grid-gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .title {
+            color: white;
+            font-size: 5rem;
+            font-family: 'Merienda', cursive;
+            margin: 0px;
+        }
+
+        #kategori {
+            color: white;
+        }
+
+        h2 {
+            color: #e29000;
+        }
+
+        .valgt {
+            color: #e29000;
+        }
+
+        /*popup vindue*/
+        #popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: azure;
+            /*            background: rgba(255, 0, 0, 0.4);*/
+            display: none;
+        }
+
+        #popup article {
+            max-width: 80vw;
+            width: auto;
+            max-height: 80vh;
+            height: auto;
+            margin: 4rem auto;
+            background-color: white;
+        }
+
+        #close {
+            position: fixed;
+            right: 1em;
+            top: 0;
+            width: 20px;
+            background-color: #e29000;
+            color: white;
+            border-radius: 15px;
+            padding: .1rem;
+        }
+
+        #popup img {
+            max-width: 70vw;
+            max-height: 55vh;
+        }
+
+        .text {
+            max-height: 40%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="popup">
+
+        <article>
+            <p id="close">x</p>
+            <img src="" alt="">
+            <div class="text">
+                <h2>Ret</h2>
+                <p><span class="navn"></span></p>
+                <p><span class="kategori"></span></p>
+                <p><span class="lang"></span></p>
+                <p><span class="pris"></span></p>
+            </div>
+        </article>
+
+    </section>
+    <h1 class="title">Babushka</h1>
+
+    <header>
+        <button class="filter valgt" data-rettype="alle">Alle</button>
+        <button class="filter " data-rettype="forretter">Forretter</button>
+        <button class="filter " data-rettype="hovedretter">Hovedretter</button>
+        <button class="filter " data-rettype="desserter">Desserter</button>
+    </header>
+
+    <h1 id="kategori">Alle</h1>
+
+    <section id="mainsection">
+
+    </section>
+    <!--template bruges naar der skal vaere flere at samme slags-->
+    <template>
+        <article>
+            <h2 class="navn"></h2>
+            <img src="" alt="">
+            <p class="kategori"></p>
+            <p class="kort"></p>
+            <p class="pris"></p>
+        </article>
+    </template>
+
+    <!--SCRIPT-->
+
+    <script>
+        let container = document.querySelector("#mainsection");
+        let temp = document.querySelector("template");
+
+        let filter = "alle";
+
+        let retter;
+        const link = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+        document.addEventListener("DOMContentLoaded", hentData)
+
+        const popup = document.querySelector("#popup");
+
+        async function hentData() {
+            const respons = await fetch(link);
+            retter = await respons.json();
+            addEventListenersToButtons();
+            vis();
+
+        }
+
+        function vis() {
+
+            console.log(retter);
+            //løb igennem array "dyr"
+
+            container.innerHTML = "";
+            retter.feed.entry.forEach(ret => {
+                if (filter == "alle" || filter == ret.gsx$kategori.$t.toLowerCase()) {
+                    let klon = temp.cloneNode(true).content;
+                    klon.querySelector(".navn").textContent = ret.gsx$navn.$t;
+                    //viser stien og efternavn på fill
+                    klon.querySelector("img").src = "imgs/small/" + ret.gsx$billede.$t + "-sm.jpg";
+                    //                    klon.querySelector(".kategori").textContent = ret.gsx$kategori.$t;
+                    klon.querySelector(".kort").textContent = ret.gsx$kort.$t;
+                    klon.querySelector(".pris").textContent = ret.gsx$pris.$t + ",-";
+                    console.log("article", klon.querySelector("article"));
+                    klon.querySelector("article").addEventListener("click", () => visDetaljer(ret));
+                    container.appendChild(klon);
+
+                }
+            })
+
+        }
+
+
+
+
+        document.querySelector("#close").addEventListener("click", () => popup.style.display = "none");
+
+        function visDetaljer(ret) {
+            console.log(ret);
+            popup.querySelector("img").src = "imgs/large/" + ret.gsx$billede.$t + ".jpg";
+            popup.querySelector("h2").textContent = ret.gsx$navn.$t;
+            //          popup.querySelector("h2").textContent += " " + ret.gsx$efternavn.$t;
+            //insaet value
+            popup.querySelector(".kategori").textContent = ret.gsx$kategori.$t;
+            popup.querySelector(".lang").textContent = ret.gsx$lang.$t;
+            popup.querySelector(".pris").textContent = ret.gsx$pris.$t + ",-";
+            popup.style.display = "block";
+        }
+
+
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.addEventListener("click", filterBTNs);
+            });
+        }
+
+        function filterBTNs() {
+            filter = this.dataset.rettype;
+            document.querySelector("#kategori").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.classList.remove("valgt");
+            })
+
+            //hvorfor har valgt ikke et . ?
+            this.classList.add("valgt");
+            vis();
+        }
+
+    </script>
+</body>
+
+</html>
