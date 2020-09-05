@@ -1,44 +1,43 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <title>HTML struktur recap</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            width: 80vw;
+            margin: 0 auto;
         }
 
         section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-gap: 20px;
+            /*
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
+*/
+
         }
 
         article {
-            max-width: 640px;
-            border: 1px solid black;
-            margin: 10px;
+            /*           flex-basis: 50%;*/
+            border: 1px solid #333;
         }
 
         img {
-            width: 100%
+            width: 100%;
         }
 
         h1,
         footer {
-            padding: 10px 0;
             text-align: center;
-        }
-
-        h2 {
-            max-width: 1320px;
-            text-align: left;
         }
 
         header,
@@ -52,29 +51,24 @@
 
 <body>
     <header>
-        <h1>Title</h1>
+        <h1>Titel</h1>
     </header>
     <main>
 
         <h2>Undertitel</h2>
         <section>
             <article>
-                <img src="https://placeimg.com/640/480/nature" alt="">
-                <h2>Article 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+                <img src="https://placeimg.com/400/300/arch" alt="" class="first">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, assumenda tenetur iste reiciendis omnis, optio amet velit quibusdam earum ad hic porro obcaecati incidunt eum cumque commodi accusamus rerum laborum.</p>
             </article>
-            <article>
-                <img src="https://placeimg.com/640/480/nature" alt="">
-                <h2>Article 1</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deserunt ab quidem quibusdam perferendis, odio maiores in ea unde distinctio! Corporis voluptatibus veritatis architecto dolor harum deserunt, molestias qui quas?</p>
+            <article><img src="https://placeimg.com/400/300/any" alt="">
+                <h3>Article 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, assumenda tenetur iste reiciendis omnis, optio amet velit quibusdam earum ad hic porro obcaecati incidunt eum cumque commodi accusamus rerum laborum.</p>
             </article>
         </section>
     </main>
     <footer>This is the footer</footer>
-    <script>
-
-
-    </script>
 </body>
 
 </html>
