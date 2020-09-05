@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <template>
+        <article id="dyr">
+            <h3></h3>
+            <img src="" alt="">
+            <p class="type">Type: </p>
+            <p class="levested">Levested: </p>
+        </article>
+    </template>
+
+    <script>
+        let dyr = [{
+            "navn": "Gris",
+            "type": "Pattedyr",
+            "levested": "svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }, {
+            "navn": "Frog",
+            "type": "padde",
+            "levested": "svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }, {
+            "navn": "fox",
+            "type": "Pattedyr",
+            "levested": "svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }, {
+            "navn": "sild",
+            "type": "fisk",
+            "levested": "svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }, {
+            "navn": "krokodille",
+            "type": "krybdyr",
+            "levested": "svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }];
+
+        //            console.log(`dyr: ${dyr.navn} type: ${dyr.type} levested: ${dyr.levested}`);
+
+        //        article.textContent = `dyr: ${dyr.navn} type: ${dyr.type} levested: ${dyr.levested} billede: ${dyr.billede}`;
+        // const listevisning = document.querySelector("#liste");
+        // dyr.forEach(dyr => {
+        // listevisning.innerHTML += `<p>${dyr.navn}${dyr.type}${dyr.levested}${dyr.billede}</p>`
+        // })
+
+        let container = document.querySelector("section");
+        let temp = document.querySelector("template");
+
+        dyr.forEach(etDyr => {
+            let klon = temp.cloneNode(true).content;
+            klon.querySelector("h3").textContent = etDyr.navn;
+            klon.querySelector(".type").textContent = etDyr.type;
+            klon.querySelector(".levested").textContent = etDyr.levested;
+            container.appendChild(klon);
+        })
+
+    </script>
+</body>
+
+</html>
